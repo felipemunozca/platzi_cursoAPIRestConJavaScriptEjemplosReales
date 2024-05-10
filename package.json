@@ -1,0 +1,11 @@
+{
+  "name": "platzi_cursoapirestconjavascriptejemplosreales",
+  "version": "1.0.0",
+  "description": "Curso práctico de consumo de API REST con JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Felipe Muñoz",
+  "license": "MIT"
+}
