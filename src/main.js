@@ -1,14 +1,36 @@
 /**
+ * N7.2: Se cre una variable para poder instanciar Axios.
+ * Se crea un objeto para crear una base de la url y asi poder reutilizar las partes de la dirección que se repiten.
+ * Se crea un headers (que utilizaremos mas adelante) para definir el tipo de contenido que estará recibiendo y enviado en la 
+ *      cabecera asi como el tipo y el formato de código UTF-8.
+ * Ademas se puede crear un parámetro para definir el llamado de la API KEY.
+ */
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3/',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+    },
+    params: {
+        'api_key': API_KEY,
+    }
+});
+
+/**
  * N5.1: Lo primero sera crear una función asíncrona para poder obtener las películas en tendencia, siguiendo la documentación oficial:
  * https://developer.themoviedb.org/reference/trending-movies
  * En la ventana de {time_window} podemos elegir day o week.
  * Luego se le debe concatenar la API Key y el resultado guardarlo en una constante data.
  * 
  * N6.1: Se agrega la propiedad language al final de la url de la api para poder obtener la información en español.
+ * 
+ * N7.3: Se actualiza el llamado a la API utilizando la instancia de Axios y sus valores definidos. Y ya no necesitamos guardar la 
+ *      respuesta en un json ya que Axios lo hará.
  */
 async function getTrendingMoviesPreview() {
-    const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY + '&language=es');
-    const data = await res.json();
+    // const res = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + API_KEY + '&language=es');
+    // const data = await res.json();
+    const { data } = await api('trending/movie/day');
+    
     console.log(data)
     
     const movies = data.results;
@@ -45,11 +67,13 @@ async function getTrendingMoviesPreview() {
  * N6.2: Se crea una función para obtener la lista de categorías o géneros de películas, siguiendo el ejemplo en la documentación oficial:
  * https://developer.themoviedb.org/reference/genre-movie-list
  * 
+ * N7.4: Se realiza la actualización de la URL utilizando las configuraciones de Axios.
  */
 async function getCategoriesPreview() {
-    const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY + '&language=es');
-    const data = await res.json();
-    
+    // const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY + '&language=es');
+    // const data = await res.json();
+    const { data } = await api('genre/movie/list')
+
     /**
      * N6.3: Se crea una constante para almacenar el arreglo con los géneros que se reciben desde la API.
      * Luego se utilizar aun forEach() para recorrer dicho arreglo.
