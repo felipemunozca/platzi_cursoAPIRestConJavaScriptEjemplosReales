@@ -1,5 +1,7 @@
 /**
- * N7.2: Se cre una variable para poder instanciar Axios.
+ * N7.2: Se cre una variable para poder instanciar Axios siguiendo la documentación oficial:
+ * https://axios-http.com/docs/instance
+ * 
  * Se crea un objeto para crear una base de la url y asi poder reutilizar las partes de la dirección que se repiten.
  * Se crea un headers (que utilizaremos mas adelante) para definir el tipo de contenido que estará recibiendo y enviado en la 
  *      cabecera asi como el tipo y el formato de código UTF-8.
@@ -12,6 +14,7 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
+        'language': 'es',
     }
 });
 
@@ -106,5 +109,9 @@ async function getCategoriesPreview() {
     });
 }
 
-getTrendingMoviesPreview();
-getCategoriesPreview();
+/**
+ * N8.9: Ya no es necesario iniciar las funciones desde el archivo main, ya que con el archivo navigation.js se pueden iniciar las
+ *      funciones pertenecientes a cada cambio de evento.
+ */
+// getTrendingMoviesPreview();
+// getCategoriesPreview();

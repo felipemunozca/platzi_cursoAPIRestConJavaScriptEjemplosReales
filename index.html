@@ -173,13 +173,19 @@
 
 
     <!-- N7.1: Se importa el enlace CDN de Axios para trabajar con la API. Se debe llamar antes del resto de código JavaScript para
-    poder utilizarlo. -->
+    poder utilizarlo. 
+    Existen diferentes formas de instanciar Axios, como aparece en la documentación oficial
+    https://axios-http.com/es/docs/intro
+    -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- N3.2: Cuando se utiliza un archivo externo para guardar las claves de conexión a una API, se deben llamar antes de que se
     inicie el código, en este caso javascript, que utilizara dicha información. -->
     <script src="./src/secrets.js"></script>
     <script src="./src/main.js"></script>
-
+    
+    <!-- N8.1: Se crea un nuevo archivo de JavaScript para poder manejar la navegación dentro del index.html de forma independiente.
+    El archivo estará se debe llamar debajo de main.js ya que se necesitan crear las funciones primero antes de llamarlas. -->
+    <script src="./src/navigation.js"></script>
 </body>
 </html>
