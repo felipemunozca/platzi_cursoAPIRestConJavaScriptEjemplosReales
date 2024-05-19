@@ -20,7 +20,7 @@
     
         <form id="searchForm" class="header-searchForm">
             <input type="text" placeholder="Vengadores" />
-            <button>🔍</button>
+            <button id="searchBtn">🔍</button>
         </form>
     </header>
     
@@ -182,6 +182,11 @@
     <!-- N3.2: Cuando se utiliza un archivo externo para guardar las claves de conexión a una API, se deben llamar antes de que se
     inicie el código, en este caso javascript, que utilizara dicha información. -->
     <script src="./src/secrets.js"></script>
+
+    <!-- N9.2: Antes de importar el archivo main.js se importa el archivo nodes.js donde estaran definidas todas las variables que 
+    se obtendran desde este archivo html. -->
+    <script src="./src/nodes.js"></script>
+
     <script src="./src/main.js"></script>
     
     <!-- N8.1: Se crea un nuevo archivo de JavaScript para poder manejar la navegación dentro del index.html de forma independiente.
