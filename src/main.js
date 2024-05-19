@@ -40,6 +40,15 @@ async function getTrendingMoviesPreview() {
     // console.log(movies);
 
     /**
+     * N10.1: Se agrega la propiedad innerHTML igual a vació, para limpiar la vista antes de agregar el código html.
+     * De esta forma se evita duplicar las películas en tendencia. 
+     * Ya que se creo un archivo nodes.js para gestionar todos los archivos llamados desde index.html, no es necesario volver a 
+     *      declararlo solo se llama, ademas se puede comentar el llamado de dicho constante en la primera linea del forEach.
+     * Se cambia el nombre de la constante por uno que sea mas descriptivo utilizando la ideología de BEM.
+     */
+    trendingMoviesPreviewList.innerHTML = "";
+
+    /**
      * N5.3: Se utiliza un forEach() para recorrer la data y asi obtener los valores de las películas por separado.
      * Utilizando el método createElement() se comenzara a crear las tarjetas con los valores que se reciben desde la API y asi poder
      *      imprimirlos en el index.html.
@@ -51,7 +60,7 @@ async function getTrendingMoviesPreview() {
      * Finalmente, se agregan las etiquetas hijas dentro de las etiquetas padres utilizando appendChild().
      */
     movies.forEach(movie => {
-        const trendingPreviewMoviesContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
+        // const trendingPreviewMoviesContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
 
         const movieContainer = document.createElement('div');
         movieContainer.classList.add('movie-container');
@@ -62,7 +71,8 @@ async function getTrendingMoviesPreview() {
         movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
 
         movieContainer.appendChild(movieImg);
-        trendingPreviewMoviesContainer.appendChild(movieContainer);
+        // trendingPreviewMoviesContainer.appendChild(movieContainer);
+        trendingMoviesPreviewList.appendChild(movieContainer);
     });
 }
 
@@ -83,6 +93,12 @@ async function getCategoriesPreview() {
      */
     const categories = data.genres;
 
+    /**
+     * N10.2: Se limpia la vista antes de cargar los elementos en el HTML y asi evitar etiquetas duplicadas.
+     * Se cambia el nombre de la constante por uno mas descriptivo.
+     */
+    categoriesPreviewList.innerHTML = "";
+
     categories.forEach(category => {
         /**
          * N6.4: Se obtiene el contenedor donde se agregara el listado de categorías (géneros) utilizando un query selector.
@@ -92,7 +108,7 @@ async function getCategoriesPreview() {
          * Se obtiene el "name" de cada categoría y se agrega al h3 mediante el método createTextNode().
          * Finalmente, se crea la estructura para imprimirla en html utilizando el método appendChild() de adentro hacia afuera.
          */
-        const previewCategoriesContainer = document.querySelector('#categoriesPreview .categoriesPreview-list')
+        // const previewCategoriesContainer = document.querySelector('#categoriesPreview .categoriesPreview-list')
         
         const categoryContainer = document.createElement('div');
         categoryContainer.classList.add('category-container');
@@ -105,7 +121,8 @@ async function getCategoriesPreview() {
     
         categoryTitle.appendChild(categoryTitleText);
         categoryContainer.appendChild(categoryTitle);
-        previewCategoriesContainer.appendChild(categoryContainer);
+        // previewCategoriesContainer.appendChild(categoryContainer);
+        categoriesPreviewList.appendChild(categoryContainer);
     });
 }
 
