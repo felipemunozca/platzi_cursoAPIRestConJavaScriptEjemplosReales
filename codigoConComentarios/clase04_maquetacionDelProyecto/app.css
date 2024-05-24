@@ -1,6 +1,8 @@
 /* General */
+/* N4.5: Se agrega border-box a todo (*) para evitar que el contenido se salga de pantalla. */
 * { box-sizing: border-box; }
 
+/* N4.6: Se crean variables CSS para definir los colores y luego llamar a la variable por su nombre. */
 :root {
     --purple-light-1: #FBFAFB;
     --purple-light-2: #EEEAF2;
@@ -89,6 +91,7 @@ button {
 
 
 /* Shared */
+/* N4.7: Desde aquí comienzan los estilos generales para cada una de las secciones. */
 .header-container, .trendingPreview-header, .categoriesPreview-container {
     padding: 0 24px;
 }
@@ -235,6 +238,7 @@ button {
     height: 8px;
 }
 
+/* N4.8: Se crea un color para cada id de categoría que retorna la Movie API. */
 #id28 { --idColor: var(--yellow); }
 #id12 { --idColor: var(--red); }
 #id16 { --idColor: var(--green); }

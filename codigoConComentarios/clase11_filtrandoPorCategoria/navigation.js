@@ -28,15 +28,6 @@ function navigator() {
         homePage();
     }
 
-    /**
-     * N12.6: Cuando se hace el cambio de vista a otra sección como las películas por categoría, la lista se carga desde abajo
-     *      por lo que se puede utilizar la propiedad scrollTop para hacer que la vista cargue desde arriba.
-     * Se utiliza la documentación oficial sobre como utilizar esta propiedad:
-     * https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop
-     */
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
 }
 
 
@@ -76,6 +67,27 @@ function categoriesPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
+    /**
+     * N11.3: Para poder obtener el id de cada categoría (genero) y enviarlo hacia la función getMoviesByCategory() se debe
+     *      manipular la información que esta recibiendo en location.hash
+     * Lo primero sera convertir la información en un string y luego separarla en dos:
+     *      - el inicio de la url, hasta category=
+     *      - el id con el nombre
+     * Se utiliza el método split() para decirle que cree un arreglo y que cada elemento del arreglo sera separado cuando encuentre
+     *      un valor "=" (antes del es igual sera un elemento, después del es igual sera otro elemento).
+     * Utilizando ES6+, se puede desestructurar un arreglo directamente utilizando variables y dándole las posiciones del arreglo,
+     *      en este caso serán las posiciones [0, 1]. La posición 0 que seria toda la url antes del "=" no la necesito por lo que se
+     *      puede colocar solo un guion bajo _ que no utilizare. La posición 1 sera todo lo que vaya despues del signo = que seria el
+     *      id con el nombre concatenado.
+     * Ya con los valores separados, se vuelven a desestructurar el arreglo, esta vez en dos posiciones que estaran separadas por un
+     *      guion "0". En la posición 0 quedara el id, en la posición 1 quedara el nombre. 
+     * El nombre de la categoría, se agregara dentro de una etiqueta en html.
+     * 
+     * N11.4: DATO IMPORTANTE: cuando se obtiene el nombre de la categoría en español, si viene con tildes o la letra ñ se generara un
+     *      error ya que no reconocerá esos caracteres, por lo que se debe deificar el valor utilizando el valor del charset del 
+     *      index.html el cual seria UTF-8. 
+     */
+    
     const [_, categoryData] = location.hash.split('='); // ['url#category', 'id-name']
     const [categoryId, categoryName] = categoryData.split('-'); //['id', 'name']
 

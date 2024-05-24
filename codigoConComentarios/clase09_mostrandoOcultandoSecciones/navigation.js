@@ -1,3 +1,7 @@
+/**
+ * N9.8: Se crean los eventos que escuchan hacer clic en los botones de la pagina.
+ * De esta manera se cambia el hash y asi cambian las vistas.
+ */
 searchFormBtn.addEventListener('click', () => {
     location.hash = '#search=';
 });
@@ -28,21 +32,22 @@ function navigator() {
         homePage();
     }
 
-    /**
-     * N12.6: Cuando se hace el cambio de vista a otra sección como las películas por categoría, la lista se carga desde abajo
-     *      por lo que se puede utilizar la propiedad scrollTop para hacer que la vista cargue desde arriba.
-     * Se utiliza la documentación oficial sobre como utilizar esta propiedad:
-     * https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop
-     */
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-
 }
 
 
 function homePage() {
-    // console.log('Home!!');
+    console.log('Home!!');
 
+    /**
+     * N9.3: Ya que tengo todas las variables definidas en nodes.js a continuación se crearan las situaciones en las que al presionar
+     *      un hash, la vista de la pagina cambiara.
+     * Para esto se estarán agregando y quitando clases dependiendo de cada elemento.
+     * Al utilizar la propiedad style.background igual a vació, se entiende que se esta limpiando el background sacando cualquier
+     *      imagen que pudiera tener.
+     * La flecha para volver (arrowBtn) se dejara inactiva, es decir, oculta.
+     * Se dejan activas (visibles) las secciones con remove: - tendencias - categorías
+     * Se dejan inactivas (ocultas) las secciones con add: - lista genérica - detalles de películas
+     */
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';  //Limpiar el background
     arrowBtn.classList.add('inactive');
@@ -61,8 +66,16 @@ function homePage() {
 }
 
 function categoriesPage() {
-    // console.log('categories!!');
+    console.log('categories!!');
 
+    /**
+     * N9.4: Cuando se presione el hash #category= se realizaran los siguientes cambios:
+     * La flecha para volver se le quitara la clase inactive (sera visible).
+     * El titulo principal se ocultara y el titulo de la categoría se hará visible.
+     * El formulario de búsqueda se ocultara.
+     * Se dejan activas (visibles) las secciones con remove: - lista genérica 
+     * Se dejan inactivas (ocultas) las secciones con add: - tendencias - categorías - detalles de películas
+     */
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
@@ -75,18 +88,20 @@ function categoriesPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
-
-    const [_, categoryData] = location.hash.split('='); // ['url#category', 'id-name']
-    const [categoryId, categoryName] = categoryData.split('-'); //['id', 'name']
-
-    //headerCategoryTitle.innerHTML = categoryName;
-    headerCategoryTitle.innerHTML = decodeURI(categoryName);
-    
-    getMoviesByCategory(categoryId);
 }
 
 function movieDetailsPage() {
-    // console.log('Movie!!');
+    console.log('Movie!!');
+
+    /**
+     * N9.5: Cuando se presione el hash #movie= se realizaran los siguientes cambios:
+     * El header de la sección con la imagen de la película sera visible.
+     * La flecha para volver se le quitara la clase inactive (sera visible).
+     * El titulo principal y el titulo de la categoría se ocultaran.
+     * El formulario de búsqueda se ocultara.
+     * Se dejan activas (visibles) las secciones con remove: - detalles de películas 
+     * Se dejan inactivas (ocultas) las secciones con add: - tendencias - categorías - lista genérica 
+     */
 
     headerSection.classList.add('header-container--long');
     // headerSection.style.background = '';
@@ -103,8 +118,17 @@ function movieDetailsPage() {
 }
 
 function searchPage() {
-    // console.log('Search!!');
+    console.log('Search!!');
 
+    /**
+     * N9.6: Cuando se presione el hash #search= se realizaran los siguientes cambios:
+     * El header de la sección estará oculto.
+     * La flecha para volver se le quitara la clase inactive (sera visible).
+     * El titulo principal y el titulo de la categoría se ocultaran.
+     * El formulario de búsqueda sera visible.
+     * Se dejan activas (visibles) las secciones con remove: - lista genérica  
+     * Se dejan inactivas (ocultas) las secciones con add: - tendencias - categorías - detalles de películas 
+     */
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
@@ -120,8 +144,17 @@ function searchPage() {
 }
 
 function trendsPage() {
-    // console.log('TRENDS!!');
+    console.log('TRENDS!!');
 
+    /**
+     * N9.7: Cuando se presione el hash #trends se realizaran los siguientes cambios:
+     * El header de la sección estará oculto.
+     * La flecha para volver se le quitara la clase inactive (sera visible) y de color blanco.
+     * El titulo principal se ocultara y el titulo de la categoría estará visible.
+     * El formulario de búsqueda se ocultara.
+     * Se dejan activas (visibles) las secciones con remove: - lista genérica  
+     * Se dejan inactivas (ocultas) las secciones con add: - tendencias - categorías - detalles de películas 
+     */
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');

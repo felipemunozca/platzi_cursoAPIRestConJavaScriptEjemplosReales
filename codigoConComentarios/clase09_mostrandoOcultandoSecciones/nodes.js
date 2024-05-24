@@ -1,3 +1,7 @@
+/**
+ * N9.1: Se crea un nuevo archivo donde se definirán en variables, todos los elementos que necesito utilizar desde el index.html
+ * 
+ */
 // Sections
 const headerSection = document.querySelector('#header');
 const trendingPreviewSection = document.querySelector('#trendingPreview');

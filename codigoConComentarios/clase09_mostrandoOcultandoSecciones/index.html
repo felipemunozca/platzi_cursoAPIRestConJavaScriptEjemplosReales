@@ -55,7 +55,6 @@
     </section>
     
     <section id="genericList" class="genericList-container inactive">
-        <!--
         <div class="movie-container">
             <img
                 src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
@@ -63,7 +62,20 @@
                 alt="Nombre de la película"
             />
         </div>
-        -->
+        <div class="movie-container">
+            <img
+                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                class="movie-img"
+                alt="Nombre de la película"
+            />
+        </div>
+        <div class="movie-container">
+            <img
+                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                class="movie-img"
+                alt="Nombre de la película"
+            />
+        </div>
     </section>
     
     <section id="movieDetail" class="movieDetail-container inactive">
@@ -122,7 +134,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>
+
+    <!-- N9.2: Antes de importar el archivo main.js se importa el archivo nodes.js donde estaran definidas todas las variables que 
+    se obtendran desde este archivo html. -->
     <script src="./src/nodes.js"></script>
+
     <script src="./src/main.js"></script>
     <script src="./src/navigation.js"></script>
 </body>
