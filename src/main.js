@@ -9,21 +9,8 @@ const api = axios.create({
     }
 });
 
-/**
- * N12.1: El código para imprimir la lista de películas en tendencia y la lista de películas por genero es exactamente el mismo, solo 
- *      cambia el endpoint de la API y el contenedor donde se imprimirá todo, por lo que siguiendo el principio de DRY o 
- *      Don´t Repeat Yourself lo mejor es crear una nueva función que pueda hacer ambos códigos recibiendo como parámetros los valores
- *      a cambiar, esto le dará mejor rendimiento y lectura a nuestro a código.
- */
+// Utils
 
-/**
- * N12.2: Se crea una nueva función para crear una sección del index que sera REUTILIZABLE.
- * Recibirá como parámetros un arreglo con "movies" y el nombre del "container" donde se debe insertar.
- * El resto de la función sera el mismo que creamos en las clases anteriores:
- * Se limpia el contenido cada vez que se ejecute la función y luego se entra al arreglo "movies" para recorrerlo e imprimir las 
- *      tarjetas con los posters de cada película. Finalmente se imprime con appendChild el contenido creado en el "container" 
- *      que se envié como parámetro. 
- */
 function createMovies(movies, container) {
     container.innerHTML = '';
 
@@ -41,13 +28,6 @@ function createMovies(movies, container) {
     });
 }
 
-/**
- * N12.4: Se crea una nueva función para crear una sección para obtener las categorías que sera REUTILIZABLE.
- * Recibirá como parámetros un arreglo con "categories" y el nombre del "container" donde se debe insertar.
- * Se limpia el contenido cada vez que se ejecute la función y luego se entra al arreglo "categories" para recorrerlo e imprimir 
- *      la lista de categorías (géneros). Finalmente se imprime con appendChild el contenido creado en el "container" que se 
- *      envié como parámetro. 
- */
 function createCategories(categories, container) {
     container.innerHTML = "";
 
@@ -71,12 +51,8 @@ function createCategories(categories, container) {
     });
 }
 
-/**
- * N12.3: Se borra el contenido que tenia anteriormente la función para obtener las películas en tendencia y utilizando la plantilla
- *      createMovies() a la que se le pasan como argumentos: 
- *      - El arreglo "movies" que obtiene la información de la API.
- *      - El nombre del "container" que esta definido en el archivo nodes.js.
- */
+// Llamados a la API
+
 async function getTrendingMoviesPreview() {
     const { data } = await api('trending/movie/day');
     const movies = data.results;
@@ -84,12 +60,6 @@ async function getTrendingMoviesPreview() {
     createMovies(movies, trendingMoviesPreviewList);
 }
 
-/**
- * N12.5: Se borra el contenido que tenia anteriormente la función para obtener las categorías de películas y utilizando la
- *      plantilla createCategories() a la que se le pasan los siguientes argumentos:
- *      - El arreglo "categories" que obtiene la información de la API.
- *      - El nombre del "container" que se obtiene desde el archivo nodes.js.
- */
 async function getCategoriesPreview() {
     const { data } = await api('genre/movie/list');
     const categories = data.genres;
@@ -97,10 +67,6 @@ async function getCategoriesPreview() {
     createCategories(categories, categoriesPreviewList)  ;
 }
 
-/**
- * N12.7: Se borra el contenido que tenia la función para obtener un listado de películas por categoría, solo se debe actualizar
- *      el código para poder reutilizar la función createMovies().
- */
 async function getMoviesByCategory(id) {
     const { data } = await api('discover/movie', {
         params: {
@@ -112,4 +78,23 @@ async function getMoviesByCategory(id) {
     createMovies(movies, genericSection);
 }
 
-
+/**
+ * N13.3: Se reutiliza el código de la función getMoviesByCategory() pero en vez de recibir un "id", ahora recibirá una "query". 
+ * Luego se debe apuntar al endpoint "/3/search/movie" como aparece en la documentación oficial:
+ * https://developer.themoviedb.org/reference/search-movie
+ * Se le debe pasar un query como parámetro y la respuesta de la búsqueda puede ser cero, uno o muchos títulos con el mismo nombre.
+ * Si el nombre del parámetro fuera otro, por ejemplo "searchValue" se debería escribir en params query: search pero dado que ambos 
+ *      valores tienen el mismo nombre de query, el compilador entiende que es una referencia de si mismo y solo se debe escribir 
+ *      una vez.
+ */
+async function getMoviesBySearch(query) {
+    const { data } = await api('search/movie', {
+        params: {
+            // query: searchValue, //si el valor del parámetro fuera otro, se debería agregar asi. 
+            query,
+        },
+    });
+    const movies = data.results;
+    
+    createMovies(movies, genericSection);
+}
