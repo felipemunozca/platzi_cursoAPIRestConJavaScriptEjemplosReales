@@ -1,4 +1,9 @@
 searchFormBtn.addEventListener('click', () => {
+    // location.hash = '#search=';
+    /**
+     * N13.1: Al presionar el botón de búsqueda ya no solo se cambiara el #hash, sino que también se obtendrá el valor
+     *      del input que escriba el usuario.
+     */
     location.hash = '#search=' + searchFormInput.value;
 });
 
@@ -6,17 +11,10 @@ trendingBtn.addEventListener('click', () => {
     location.hash = '#trends';
 });
 
-let historial = [];
-
 arrowBtn.addEventListener('click', () => {
-    historial.pop()
-    
-    if (historial.length > 0) {
-        location.hash = '#search=' + historial[historial.length - 1]
-    } else {
-        location.hash = '#home'
-    }
-})
+    location.hash = '#home';
+});
+
 
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
@@ -119,6 +117,16 @@ function searchPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
+    /**
+     * N13.2: Al buscar una película, Se recibe el valor completo de la url y aprovechando las propiedades de ES6+ se puede pasar
+     *      los resultados directamente a un arreglo. Se utilizara el método split() para partir el arreglo que en este caso serán 
+     *      dos partes.
+     * En la posición cero 0, estará todo la url hasta el ...#search. Y como no la ocupare para nada, le asigno una variable sin 
+     *      nombre solo con un valor de guion bajo "_".
+     * En la posición uno 1, estará todo lo que esta después del signo es igual "=". A ese resultado se le asigna el valor de 
+     *      query o consulta en español.
+     *  Finalmente se instancia la función getMoviesBySearch() y se le pasa el valor de query como argumento.
+     */
     const [_, query] = location.hash.split('='); // ['url#search', 'id-name']
     getMoviesBySearch(query);
 }
@@ -138,7 +146,4 @@ function trendsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
-
-    headerCategoryTitle.innerHTML = 'Tendencias';
-    getTrendingMovies();
 }

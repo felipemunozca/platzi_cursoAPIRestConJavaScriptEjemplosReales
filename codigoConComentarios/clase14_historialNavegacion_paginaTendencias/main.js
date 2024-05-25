@@ -89,6 +89,11 @@ async function getMoviesBySearch(query) {
     createMovies(movies, genericSection);
 }
 
+/**
+ * N14.4: Se crea una función para obtener las películas en tendencia y agregarlos en una sección aparte al presionar el botón en 
+ *      inicio que dice "Ver más".
+ * Se define el endpoint y se reutiliza la función createMovies() para imprimir los resultados.
+ */
 async function getTrendingMovies() {
     const { data } = await api('trending/movie/day');
     const movies = data.results;

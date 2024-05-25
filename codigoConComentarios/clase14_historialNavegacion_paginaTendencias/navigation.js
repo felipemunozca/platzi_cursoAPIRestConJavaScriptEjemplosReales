@@ -6,6 +6,29 @@ trendingBtn.addEventListener('click', () => {
     location.hash = '#trends';
 });
 
+//arrowBtn.addEventListener('click', () => {
+    // location.hash = '#home';
+    /**
+     * N14.1: Ahora al presionar el botón con la flecha de volver hacia atrás, se ejecutara una función llamada history y el 
+     *      método back() que es propio de JavaScript.
+     */
+    //history.back();
+//});
+
+/**
+ * N14.2: DESAFIÓ DE LA CLASE.
+ * Crear un condicional en el caso en que se envié la url ya directamente desde una búsqueda, por ejemplo buscar dinosaurios y 
+ *      enviarle el enlace a otra persona, que al presionar el botón volver lo envié a la vista home y NO a la pagina blank del
+ *      navegador.
+ * 
+ * N14.3: Se utiliza el código de un compañero como base.
+ * Se crea un arreglo "historial" donde se irán guardando las búsquedas.
+ * Se redeclara el evento click del botón arrowBtn, al presionar el botón se eliminara el ultimo valor ingresado al arreglo mediante
+ *      el método pop(). 
+ * Se crea una condición, si el largo del arreglo es mayor a 0, el hash de la búsqueda sera el valor de historial menos -1 una
+ *      posición (para volver a la búsqueda anterior). En caso contrario, si el valor en igual o menor a cero, el valor del hash
+ *      sera home y se enviara al usuario a la vista principal.
+ */
 let historial = [];
 
 arrowBtn.addEventListener('click', () => {
@@ -139,6 +162,10 @@ function trendsPage() {
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
+    /**
+     * N14.5: Se agrega el titulo de la sección.
+     * Se llama la función getTrendingMovies() para que pueda ser inicializada.
+     */
     headerCategoryTitle.innerHTML = 'Tendencias';
     getTrendingMovies();
 }

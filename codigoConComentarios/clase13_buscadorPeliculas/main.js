@@ -78,20 +78,23 @@ async function getMoviesByCategory(id) {
     createMovies(movies, genericSection);
 }
 
+/**
+ * N13.3: Se reutiliza el código de la función getMoviesByCategory() pero en vez de recibir un "id", ahora recibirá una "query". 
+ * Luego se debe apuntar al endpoint "/3/search/movie" como aparece en la documentación oficial:
+ * https://developer.themoviedb.org/reference/search-movie
+ * Se le debe pasar un query como parámetro y la respuesta de la búsqueda puede ser cero, uno o muchos títulos con el mismo nombre.
+ * Si el nombre del parámetro fuera otro, por ejemplo "searchValue" se debería escribir en params query: search pero dado que ambos 
+ *      valores tienen el mismo nombre de query, el compilador entiende que es una referencia de si mismo y solo se debe escribir 
+ *      una vez.
+ */
 async function getMoviesBySearch(query) {
     const { data } = await api('search/movie', {
         params: {
+            // query: searchValue, //si el valor del parámetro fuera otro, se debería agregar asi. 
             query,
         },
     });
     const movies = data.results;
     
-    createMovies(movies, genericSection);
-}
-
-async function getTrendingMovies() {
-    const { data } = await api('trending/movie/day');
-    const movies = data.results;
-
     createMovies(movies, genericSection);
 }
