@@ -102,6 +102,15 @@ function movieDetailsPage() {
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
 
+    /**
+     * N15.2: Se recibe el valor completo de la url y aprovechando las propiedades de ES6+ se puede pasar la data directamente 
+     *      a un arreglo. Para esto se utilizara el método split() para partir el arreglo que en este caso serán dos partes.
+     * En la posición cero 0, estará todo la url hasta el ...#movie. Y como no la ocupare para nada, le asigno una variable sin 
+     *      nombre solo con un valor de guion bajo "_".
+     * En la posición uno 1, estará todo lo que esta después del signo es igual "=". Este sera el valor del id de cada película.
+     * 
+     * Finalmente, se inicializa la función getMovieById() con el id de UNA PELÍCULA que luego se imprimirá en la vista.
+     */
     const [_, movieId] = location.hash.split('='); // ['url#movie', 'id']
     getMovieById(movieId);
 }

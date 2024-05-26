@@ -67,6 +67,19 @@
     </section>
     
     <section id="movieDetail" class="movieDetail-container inactive">
+        <!-- N15.5: Ahora esta sección obtendrá la información desde la función getMovieById() y la solicitud a la API. 
+            Se mantienen las etiquetas <h1>, <span>, <p> ya que no se están creando desde el código JavaScript, en vez de eso se
+                han creado variables para cada elemento y luego se le inserta la información mediante la propiedad "textContent".
+            Para agregar los géneros de la película, se mantiene la etiqueta <article> y su contenido puede ser borrado ya que
+                sera generado desde el archivo Javascript
+        -->
+        <!--
+        <h1 class="movieDetail-title">Deadpool</h1>
+        <span class="movieDetail-score">7.6</span>
+        <p class="movieDetail-description">
+            Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
+        </p>
+        -->
         <h1 class="movieDetail-title"></h1>
         <span class="movieDetail-score"></span>
         <p class="movieDetail-description"></p>
@@ -75,6 +88,12 @@
             <!--
             <div class="category-container">
                 <h3 id="id28" class="category-title">Romance</h3>
+            </div>
+            <div class="category-container">
+                <h3 id="id16" class="category-title">Drama</h3>
+            </div>
+            <div class="category-container">
+                <h3 id="id14" class="category-title">Acción</h3>
             </div>
             -->
         </article>
