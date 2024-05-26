@@ -116,9 +116,22 @@ async function getMovieById(id) {
     
     createCategories(movie.genres, movieDetailCategoriesList);
 
+    /**
+     * N16.1: Cada vez que se llame a una película por id, se inicializar una función que obtenga las películas relacionadas con
+     *      el id. 
+     * Se le envía el id obtenido en esta función como parámetro.
+     */
     getRelatedMoviesId(id);
 }
 
+/**
+ * N16.2: Se crea la función y se hace la solicitud al endpoint de la API ".../3/movie/{movie_id}/recommendations" como indica 
+ *      la documentación oficial:
+ * https://developer.themoviedb.org/reference/movie-recommendations
+ * 
+ * El resultado de la consulta sera un arreglo "relatedMovies".
+ * Finalmente, se reutiliza la función createMovies() para crear la lista de cards.
+ */
 async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
