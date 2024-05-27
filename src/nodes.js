@@ -25,3 +25,7 @@ const trendingBtn = document.querySelector('.trendingPreview-btn');
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');
 const movieDetailScore = document.querySelector('.movieDetail-score');
+
+// Error Message
+const errorMessageInput = document.querySelector('#errorMessageInputRequired');
+const errorMessageSearch = document.querySelector('#errorMessageSearch');

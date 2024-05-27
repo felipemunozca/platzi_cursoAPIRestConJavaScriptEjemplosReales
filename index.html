@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
-
+    
     <link rel="stylesheet" href="./styles/app.css">
+    <link rel="stylesheet" href="./styles/queries.css" media="(min-width: 768px)">
     <title>PlatziMovies</title>
 </head>
 <body>
@@ -21,6 +22,7 @@
             <input type="text" placeholder="Vengadores" />
             <button id="searchBtn">🔍</button>
         </form>
+        <div id="errorMessageInputRequired" class="error-message inactive"></div>
     </header>
     
     <section id="trendingPreview" class="trendingPreview-container">
@@ -30,15 +32,7 @@
         </div>
     
         <article class="trendingPreview-movieList">
-            <!--
-            <div class="movie-container">
-                <img
-                    src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                    class="movie-img"
-                    alt="Nombre de la película"
-                />
-            </div>
-            -->
+            
         </article>
     </section>
     
@@ -46,57 +40,50 @@
         <h2 class="categoriesPreview-title">Categorías</h2>
     
         <article class="categoriesPreview-list">
-            <!--
-            <div class="category-container">
-                <h3 id="id28" class="category-title">Romance</h3>
-            </div>
-            -->
+            
         </article>
     </section>
     
-    <section id="genericList" class="genericList-container inactive">
-        <!--
-        <div class="movie-container">
-            <img
-                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                class="movie-img"
-                alt="Nombre de la película"
-            />
+    <section id="" class="genericList-section">
+        <div id="genericList" class="genericList-container inactive">
+
         </div>
-        -->
+        <div id="errorMessageSearch" class="error-message"></div>
     </section>
     
     <section id="movieDetail" class="movieDetail-container inactive">
-        <h1 class="movieDetail-title"></h1>
-        <span class="movieDetail-score"></span>
-        <p class="movieDetail-description"></p>
+        <div class="movieDetail-section">
+            <div class="movieDetail-section--left"></div>
+            <div class="movieDetail-section--right">
+                <article>
+                    <h1 class="movieDetail-title"></h1>
+                    <span class="movieDetail-score"></span>
+                </article>
+                <p class="movieDetail-description"></p>
+                <p><strong>Géneros</strong></p>
+                <article class="movieDetail--categories-list">
+                    
+                </article>
+            </div>
+            
+        </div>
 
         <article class="categories-list">
-            <!--
-            <div class="category-container">
-                <h3 id="id28" class="category-title">Romance</h3>
-            </div>
-            -->
+
         </article>
-    
+        
         <article class="relatedMovies-container">
             <h2 class="relatedMovies-title">Películas similares</h2>
-        
             <div class="relatedMovies-scrollContainer">
-                <!--
-                <div class="movie-container">
-                    <img
-                        src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                        class="movie-img"
-                        alt="Nombre de la película"
-                    />
-                </div>
-                -->
+                
             </div>
         </article>
     </section>
     
-    <footer>Hecho con amor en Platzi por @juandc</footer>
+    <footer>
+        <p>Plantilla creada por @juandc</p>
+        <p>Actualizada por <a href="https://github.com/felipemunozca/platzi_cursoAPIRestConJavaScriptEjemplosReales">Felipe Muñoz</a></p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js"></script>

@@ -1,3 +1,5 @@
+const API_KEY = 'a2a87dc7441739d3da15fd4828a001b7';
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -89,8 +91,22 @@ async function getMoviesBySearch(query) {
         },
     });
     const movies = data.results;
-    
-    createMovies(movies, genericSection);
+
+    genericSection.innerHTML = '';
+
+    if (movies.length == 0) {
+        errorMessageSearch.classList.remove('inactive');
+        errorMessageSearch.innerHTML = `
+            <p><strong>Error</strong></p>
+            <p>No se encontró ninguna película con la palabra "<strong>${query}</strong>".</p>
+            <p>Revise que el nombre este bien escrito y vuelva a intentarlo.</p>
+        `;
+        //alert('Arreglo vació');
+        return;
+    } else {
+        errorMessageSearch.classList.add('inactive');
+        createMovies(movies, genericSection);
+    }
 }
 
 async function getTrendingMovies() {
@@ -103,25 +119,35 @@ async function getTrendingMovies() {
 async function getMovieById(id) {
     const { data: movie } = await api('movie/' + id);
 
+    const movieDetailImg = document.querySelector('.movieDetail-section--left');
+    const movieDetailCategories = document.querySelector('.movieDetail--categories-list');
+
     const movieImgUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
     // console.log(movieImgUrl)
-    headerSection.style.background = `
+    // headerSection.style.background
+    /*
+    movieDetailImg.style.background = `
         linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%),
         url(${movieImgUrl})
     `;
+    */
+
+    movieDetailImg.style.backgroundImage  = `url(${movieImgUrl})`;
     
     movieDetailTitle.textContent = movie.title;
     movieDetailDescription.textContent = movie.overview;
     movieDetailScore.textContent = movie.vote_average;
     
-    createCategories(movie.genres, movieDetailCategoriesList);
+    createCategories(movie.genres, movieDetailCategories);
 
     getRelatedMoviesId(id);
 }
 
 async function getRelatedMoviesId(id) {
+    
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
     
     createMovies(relatedMovies, relatedMoviesContainer);
+    
 }

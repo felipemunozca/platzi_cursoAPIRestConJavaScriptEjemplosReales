@@ -1,9 +1,5 @@
-/**** Configuración General ****/
-* { 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* General */
+* { box-sizing: border-box; }
 
 :root {
     --purple-light-1: #FBFAFB;
@@ -39,12 +35,15 @@ body {
     font-family: var(--font-family-text);
     font-weight: var(--font-weight-text1);
     font-size: 16px;
-    margin: 6px auto 0;
-    max-width: 1024px;
+    margin: 4px 0 0 0;
+    padding: 0;
 }
 
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
 
-/**** Títulos ****/
 h1, h2 {
     font-size: 24px;
     color: var(--purple-dark-2);
@@ -53,19 +52,19 @@ h1, h2 {
     margin: 0;
     padding: 0;
 }
+
 h2 {
     font-size: 18px;
     color: var(--purple-dark-1);
     font-weight: var(--font-weight-title2);
 }
+
 h3 {
     color: var(--purple-dark-2);
     font-weight: var(--font-weight-text2);
     font-size: 16px;
 }
 
-
-/**** Input y botones ****/
 input {
     background-color: var(--purple-light-2);
     color: var(--purple-medium-2);
@@ -73,10 +72,12 @@ input {
     font-size: 18px;
     padding-left: 16px;
 }
+
 input::placeholder {
     color: var(--purple-medium-1);
     font-family: var(--font-family-text);
 }
+
 button {
     background-color: var(--purple-dark-1);
     border: none;
@@ -87,40 +88,59 @@ button {
 }
 
 
-/**** Estilos generales para las las imágenes ****/
+/* Shared */
+.header-container, .trendingPreview-header, .categoriesPreview-container {
+    padding: 0 24px;
+}
+
+.trendingPreview-container, .categoriesPreview-container, footer {
+    margin-top: 48px;
+}
+
+.trendingPreview-header, .categoriesPreview-title {
+    margin-bottom: 24px;
+}
+
 .movie-container {
     cursor: pointer;
 }
+
 .movie-img {
     border-radius: 8px;
 }
 
+.categoriesPreview-list, .categories-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+}
 
-/**** Header ****/
+
+/* Header */
 .header-container {
-    padding: 0 24px;
     padding-top: 40px;
 }
+
 .header-container--long {
+    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
     background-size: cover !important;
     height: 480px;
     position: fixed;
     top: 0;
     width: 100%;
 }
-.header-container--big {
-    height: 520px;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+
 .header-container--categoryView {
     background: linear-gradient(180deg, rgba(238, 204, 117, 0.5) 0%, rgba(238, 204, 117, 0) 72.92%);
 } 
+
 .header-title {
     margin-bottom: 16px;
 }
+
 .header-arrow {
     font-weight: var(--font-weight-text2);
     font-size: 36px;
@@ -131,6 +151,7 @@ button {
 .header-arrow--white {
     color: var(--purple-light-1);
 }
+
 .header-searchForm {
     display: flex;
     align-items: center;
@@ -138,6 +159,7 @@ button {
     width: 100%;
     flex-wrap: nowrap;
 }
+
 .header-searchForm input {
     height: 48px;
     width: 100%;
@@ -152,35 +174,33 @@ button {
 }
 
 
-/**** Sección Tendencias ****/
-.trendingPreview-container {
-    padding: 0 24px;
-    margin-top: 48px;
-}
+/* Trending */
 .trendingPreview-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.trendingPreview-header, .categoriesPreview-title {
-    margin-bottom: 24px;
-}
+
 .trendingPreview-btn {
     border-radius: 8px;
     height: 32px;
     width: 72px;
 }
+
 .trendingPreview-movieList {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     height: 241px;
+    padding-left: 24px;
     padding-bottom: 16px;
 }
+
 .trendingPreview-movieList .movie-container {
     display: inline-block;
     margin-right: 8px;
 }
+
 .trendingPreview-movieList .movie-container .movie-img {
     height: 225px;
     min-height: 225px;
@@ -191,21 +211,11 @@ button {
 }
 
 
-/**** Sección Categorías ****/
-.categoriesPreview-container {
-    padding: 0 24px;
-    margin-top: 48px;
-}
-.categoriesPreview-list, .categories-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    flex-wrap: wrap;
-}
+/* Categories */
 .category-container {
     width: 45%;
 }
+
 .category-title {
     margin-bottom: 8px;
     cursor: pointer;
@@ -213,9 +223,11 @@ button {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .category-title::before {
     content: '••••';
     color: transparent;
+    /* TODO: cambiar color por ID de la categoría */
     background-color: var(--idColor);
     border-radius: 8px;
     margin-right: 8px;
@@ -223,7 +235,6 @@ button {
     height: 8px;
 }
 
-/**** Color para cada categoría ****/
 #id28 { --idColor: var(--yellow); }
 #id12 { --idColor: var(--red); }
 #id16 { --idColor: var(--green); }
@@ -245,52 +256,43 @@ button {
 #id37 { --idColor: var(--darkBlue); }
 
 
-/*** Sección resultados de búsqueda ***/
-.genericList-section {
-    padding: 0 24px;
-}
+/* Generic List (search, trending & category) */
 .genericList-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding-top: 20px;
+    padding: 32px 24px;
 }
+
 .genericList-container .movie-container {
     display: inline-block;
     width: 47.5%;
 }
+
 .genericList-container .movie-img {
     width: 100%;
 }
 
 
-/*** Sección detalles de búsqueda ***/
-.movieDetail-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 24px;
+/* Movie Detail */
+.movieDetail-container {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 32px 24px;
+    margin-top: 403px;
+    z-index: 1;
+    position: absolute;
+    background-color: var(--purple-light-1);
 }
-.movieDetail-section--left {
-    height: 450px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.movieDetail-section--right {
-    display: flex;
-    flex-direction: column;
-}
-.movieDetail-section--right p {
-    padding-bottom: 8px;
-}
+
 .movieDetail-title {
     display: inline-block;
     width: 80%;
     margin: 0 0 16px 0;
-    padding-top: 16px;
+    padding: 0;
 }
+
 .movieDetail-score {
     display: inline-block;
     text-align: right;
@@ -302,31 +304,34 @@ button {
     color: var(--yellow);
     padding-right: 4px;
 }
+
 .movieDetail-description {
-    margin: 0 0 8px 0;
+    margin: 0 0 24px 0;
 }
 
-
-/**** Sección Películas similares ****/
 .relatedMovies-container {
     margin-top: 24px;
     height: 216px;
-    padding: 0 24px;
 }
+
 .relatedMovies-title {
-    margin-top: 24px;
     margin-bottom: 16px;
 }
+
 .relatedMovies-scrollContainer {
+    position: absolute;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    width: calc(100vw - 24px);
     padding-bottom: 16px;
 }
+
 .relatedMovies-scrollContainer .movie-container {
     display: inline-block;
     margin-right: 8px;
 }
+
 .relatedMovies-scrollContainer .movie-img {
     width: 125px;
     min-width: 125px;
@@ -336,44 +341,19 @@ button {
     max-height: 187.5px;
 }
 
-
-/**** Footer ****/
+/* Footer */
 footer {
     background-color: var(--purple-medium-3);
     color: var(--purple-light-2);
-    height: 60px;
+    text-align: center;
+    height: 48px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 48px;
-    margin-bottom: 6px;
-    border: 1px solid var(--purple-medium-1);
-}
-footer a {
-    color: var(--purple-light-2);
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.5s;
-}
-footer a:hover {
-    transform: scale(1.3);
 }
 
-/**** Clase comodín - Ocultar elementos ****/
+
+/* Navigation */
 .inactive {
     display: none;
-}
-
-/**** Mensaje de error ****/
-.error-message {
-    background-color: #FFCAC8;
-    margin-top: 10px;
-    border-radius: 4px;
-    padding: 10px;
-    border-left: 6px solid red;
-    width: 100%;
-}
-.error-message p {
-    padding-top: 4px;
 }
